@@ -1,5 +1,6 @@
 package tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -38,4 +40,12 @@ public class Transaction extends BaseEntity{
     @Column(name = "limit_exceeded")
     private Boolean limitExceeded;
 
+    public Transaction(Long accountFrom, Long accountTo, String currency, BigDecimal amount, String category, OffsetDateTime transactionDate) {
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
+        this.currency = currency;
+        this.amount = amount;
+        this.category = category;
+        this.transactionDate = transactionDate;
+    }
 }

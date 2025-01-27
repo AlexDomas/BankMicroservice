@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-default-monthly-limit
+      author: AlexDomas
+      changes:
+        - insert:
+            tableName: monthly_limit
+            columns:
+              - column:
+                  name: limit_sum
+                  valueNumeric: 1000.0
+              - column:
+                  name: start_limit
+                  valueNumeric: 1000.0
+              - column:
+                  name: limit_datetime
+                  valueDate: "DATE_TRUNC('month', NOW())"
+              - column:
+                  name: limit_currency_shortname
+                  value: USD

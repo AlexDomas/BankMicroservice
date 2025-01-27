@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-transaction
+      author: AlexDomas
+      changes:
+        - createTable:
+            tableName: transaction
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_from
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_to
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_shortname
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: limit_exceeded
+                  type: boolean
+                  constraints:
+                    nullable: false

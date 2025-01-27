@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-monthly-limit
+      author: AlexDomas
+      changes:
+        - createTable:
+            tableName: monthly_limit
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: limit_sum
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_limit
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: limit_datetime
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: limit_currency_shortname
+                  type: varchar(10)
+                  constraints:
+                    nullable: false

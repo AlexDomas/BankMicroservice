@@ -4,26 +4,31 @@ databaseChangeLog:
       author: AlexDomas
       changes:
         - createTable:
-            tableName: currency_rate
+            tableName: monthly_limit
             columns:
               - column:
                   name: id
-                  type: uuid
+                  type: serial
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: rate_date
-                  type: date
-                  constraints:
-                    nullable: false
-              - column:
-                  name: currency_pair
-                  type: varchar(10)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: close_rate
+                  name: limit_sum
                   type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_limit
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: limit_datetime
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: limit_currency_shortname
+                  type: varchar(10)
                   constraints:
                     nullable: false

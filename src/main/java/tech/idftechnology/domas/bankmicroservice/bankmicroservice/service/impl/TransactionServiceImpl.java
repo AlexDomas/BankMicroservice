@@ -2,6 +2,7 @@ package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.client.CurrencyClient;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionRequestDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.MonthlyLimit;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Transaction;
@@ -19,11 +20,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
-    TransactionRepository transactionRepository;
+    private final CurrencyClient currencyClient;
 
-    MonthlyLimitRepository monthlyLimitRepository;
+    private final TransactionRepository transactionRepository;
 
-    TransactionMapper transactionMapper;
+    private final MonthlyLimitRepository monthlyLimitRepository;
+
+    private final TransactionMapper transactionMapper;
 
     @Override
     public List<Transaction> getAllTransactions() {
@@ -31,15 +34,21 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public UUID createTransaction(TransactionRequestDTO transactionRequestDTO) {
+    public Long createTransaction(TransactionRequestDTO transactionRequestDTO) {
         Transaction transaction = transactionMapper.mapToTransaction(transactionRequestDTO);
         Optional<MonthlyLimit> optionalLimit = monthlyLimitRepository.findByLimitSumGreaterThan(BigDecimal.valueOf(0));
         if(optionalLimit.isPresent()){
             MonthlyLimit monthlyLimit = optionalLimit.get();
-            BigDecimal usdTransactionAmount = BigDecimal.valueOf(0);/*convertTransactionAmountToUsd*/
+            BigDecimal usdTransactionAmount = convertTransactionAmount(transactionRequestDTO);
             updateLimitAndTransaction(monthlyLimit, usdTransactionAmount, transaction);
         }
         return transactionRepository.save(transaction).getId();
+    }
+
+    private BigDecimal convertTransactionAmount(TransactionRequestDTO transactionRequestDTO) {
+        return transactionRequestDTO.getCurrency().equals("RUB")
+                ? currencyClient.convertCurrencyRUBToUSD(transactionRequestDTO.getAmount())
+                : currencyClient.convertCurrencyKZTToUSD(transactionRequestDTO.getAmount());
     }
 
     private void updateLimitAndTransaction(MonthlyLimit monthlyLimit, BigDecimal usdTransactionAmount, Transaction transaction) {

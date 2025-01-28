@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: add-default-monthly-limit
+      id: insert-default-monthly-limit
       author: AlexDomas
       changes:
         - insert:

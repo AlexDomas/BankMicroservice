@@ -4,12 +4,11 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.Transactio
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Transaction;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface TransactionService {
 
     List<Transaction> getAllTransactions();
 
-    public UUID createTransaction(TransactionRequestDTO transactionRequestDTO);
+    Long createTransaction(TransactionRequestDTO transactionRequestDTO);
 
 }

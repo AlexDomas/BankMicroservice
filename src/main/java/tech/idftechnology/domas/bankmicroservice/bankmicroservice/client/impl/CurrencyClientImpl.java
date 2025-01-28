@@ -27,11 +27,13 @@ public class CurrencyClientImpl implements CurrencyClient {
     private static final String USDKZT = "USD/KZT";
     private static final String USDRUB = "USD/RUB";
 
-    public BigDecimal convertKZTToUSD(BigDecimal KZTAmount) {
+    @Override
+    public BigDecimal convertCurrencyKZTToUSD(BigDecimal KZTAmount) {
         return convertCurrency(KZTAmount, USDKZT);
     }
 
-    public BigDecimal convertRUBToUSD(BigDecimal RUBAmount) {
+    @Override
+    public BigDecimal convertCurrencyRUBToUSD(BigDecimal RUBAmount) {
         return convertCurrency(RUBAmount, USDRUB);
     }
 
@@ -61,7 +63,7 @@ public class CurrencyClientImpl implements CurrencyClient {
         try {
             return fetchExchangeRate(currencyPair);
         } catch (RuntimeException e) {
-            System.out.println("Current data unavailable, using previous close");
+            System.out.println("Current information about currency rate unavailable, using previous close!");
             return fetchPreviousClose(currencyPair);
         }
     }

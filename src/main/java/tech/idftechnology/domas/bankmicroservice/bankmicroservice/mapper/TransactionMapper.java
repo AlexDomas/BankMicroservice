@@ -17,7 +17,7 @@ public class TransactionMapper {
                 transactionRequestDTO.getCurrency(),
                 transactionRequestDTO.getAmount(),
                 transactionRequestDTO.getCategory(),
-                OffsetDateTime.now(ZoneOffset.ofHours(5)));
+                OffsetDateTime.now(ZoneOffset.ofHours(3)));
     }
 
 }

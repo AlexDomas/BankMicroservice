@@ -3,14 +3,18 @@ package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.client.CurrencyClient;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionExceededLimitResponseDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionRequestDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.MonthlyLimit;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Transaction;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.NoExceededLimitTransactionsException;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.NoMonthlyLimitsFoundException;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.mapper.TransactionMapper;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.MonthlyLimitRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.TransactionRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.TransactionService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -33,14 +37,33 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.findAll();
     }
 
+    @Transactional
+    @Override
+    public TransactionExceededLimitResponseDTO getExceededLimitTransactions() {
+        List<Transaction> limitExceededTransactions = transactionRepository.findTransactionsByLimitExceededTrue();
+        if (limitExceededTransactions.isEmpty()) {
+            throw new NoExceededLimitTransactionsException("No transactions with exceeded limit found.");
+        }
+        List<MonthlyLimit> limits = monthlyLimitRepository.findAll();
+        if (limits.isEmpty()) {
+            throw new NoMonthlyLimitsFoundException("No monthly limits found.");
+        }
+        return new TransactionExceededLimitResponseDTO(limitExceededTransactions, limits);
+    }
+
+    @Transactional
     @Override
     public Long createTransaction(TransactionRequestDTO transactionRequestDTO) {
         Transaction transaction = transactionMapper.mapToTransaction(transactionRequestDTO);
-        Optional<MonthlyLimit> optionalLimit = monthlyLimitRepository.findByLimitSumGreaterThan(BigDecimal.valueOf(0));
+        String category = transactionRequestDTO.getCategory();
+        Optional<MonthlyLimit> optionalLimit = monthlyLimitRepository.findByLimitSumGreaterThanAndCategory(BigDecimal.valueOf(0), category);
         if(optionalLimit.isPresent()){
             MonthlyLimit monthlyLimit = optionalLimit.get();
             BigDecimal usdTransactionAmount = convertTransactionAmount(transactionRequestDTO);
             updateLimitAndTransaction(monthlyLimit, usdTransactionAmount, transaction);
+        }
+        else{
+            transaction.setLimitExceeded(true);
         }
         return transactionRepository.save(transaction).getId();
     }

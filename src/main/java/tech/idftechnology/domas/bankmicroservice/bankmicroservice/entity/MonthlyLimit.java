@@ -31,4 +31,7 @@ public class MonthlyLimit extends BaseEntity {
     @Column(name = "limit_currency_shortname")
     private String limitCurrencyShortname;
 
+    @Column(name = "category")
+    private String category;
+
 }

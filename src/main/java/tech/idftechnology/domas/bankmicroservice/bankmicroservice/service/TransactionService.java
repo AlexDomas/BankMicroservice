@@ -1,5 +1,6 @@
 package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service;
 
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionExceededLimitResponseDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionRequestDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Transaction;
 
@@ -10,5 +11,7 @@ public interface TransactionService {
     List<Transaction> getAllTransactions();
 
     Long createTransaction(TransactionRequestDTO transactionRequestDTO);
+
+    TransactionExceededLimitResponseDTO getExceededLimitTransactions();
 
 }

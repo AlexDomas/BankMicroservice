@@ -1,10 +1,11 @@
 package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.MonthlyLimitRequestDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.MonthlyLimit;
-import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.MonthlyLimitAlreadyExist;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.MonthlyLimitAlreadyExistException;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.mapper.MonthlyLimitMapper;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.MonthlyLimitRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.MonthlyLimitService;
@@ -12,6 +13,7 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.Monthl
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class MonthlyLimitServiceImpl implements MonthlyLimitService {
@@ -32,7 +34,7 @@ public class MonthlyLimitServiceImpl implements MonthlyLimitService {
 
         for (MonthlyLimit limit: existingLimitsByCategory){
             if (limit.getLimitSum().doubleValue() > 0.0)
-                throw new MonthlyLimitAlreadyExist("Limit for category " + monthlyLimitRequestDTO.getCategory() + " is not exceeded yet.");
+                throw new MonthlyLimitAlreadyExistException("Limit for category " + monthlyLimitRequestDTO.getCategory() + " is not exceeded yet.");
         }
 
         MonthlyLimit monthlyLimit = monthlyLimitMapper.mapToMonthlyLimit(monthlyLimitRequestDTO);

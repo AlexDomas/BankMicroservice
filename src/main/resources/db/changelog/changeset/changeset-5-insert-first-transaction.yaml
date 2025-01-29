@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-first-transaction
+      author: AlexDomas
+      changes:
+        - insert:
+            tableName: transaction
+            columns:
+              - column:
+                  name: account_from
+                  valueNumeric: 321321321334
+              - column:
+                  name: account_to
+                  valueNumeric: 421998421934
+              - column:
+                  name: currency_shortname
+                  value: "RUB"
+              - column:
+                  name: amount
+                  value: 100000000
+              - column:
+                  name: category
+                  value: goods
+              - column:
+                  name: transaction_date
+                  valueDate: "DATE_TRUNC('month', NOW())"
+              - column:
+                  name: limit_exceeded
+                  value: true

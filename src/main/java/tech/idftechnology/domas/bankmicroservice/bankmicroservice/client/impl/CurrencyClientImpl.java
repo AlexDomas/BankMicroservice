@@ -8,8 +8,10 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.client.Currenc
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.config.ApiProperties;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.CurrencyResponseDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.CurrencyRate;
-import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.CurrencyInformationUnavailable;
+import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.CurrencyInformationUnavailableException;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.CurrencyRateRepository;
+
+import static tech.idftechnology.domas.bankmicroservice.bankmicroservice.constant.CurrencyConstant.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -21,20 +23,19 @@ import java.time.LocalDate;
 public class CurrencyClientImpl implements CurrencyClient {
 
     private final RestTemplate restTemplate;
-    private final ApiProperties apiProperties;
-    private final CurrencyRateRepository currencyRepository;
 
-    private static final String USDKZT = "USD/KZT";
-    private static final String USDRUB = "USD/RUB";
+    private final ApiProperties apiProperties;
+
+    private final CurrencyRateRepository currencyRepository;
 
     @Override
     public BigDecimal convertCurrencyKZTToUSD(BigDecimal KZTAmount) {
-        return convertCurrency(KZTAmount, USDKZT);
+        return convertCurrency(KZTAmount, CONSTANT_CURRENCY_USD_KZT);
     }
 
     @Override
     public BigDecimal convertCurrencyRUBToUSD(BigDecimal RUBAmount) {
-        return convertCurrency(RUBAmount, USDRUB);
+        return convertCurrency(RUBAmount, CONSTANT_CURRENCY_USD_RUB);
     }
 
     private BigDecimal convertCurrency(BigDecimal amount, String currencyPair) {
@@ -92,7 +93,7 @@ public class CurrencyClientImpl implements CurrencyClient {
         if (response != null && response.getValues() != null && !response.getValues().isEmpty()) {
             return response.getValues().get(0).getClose();
         }
-        throw new CurrencyInformationUnavailable("Unable to retrieve exchange currency rate!");
+        throw new CurrencyInformationUnavailableException("Unable to retrieve exchange currency rate!");
     }
 
     private BigDecimal fetchPreviousClose(String currencyPair) {
@@ -100,6 +101,6 @@ public class CurrencyClientImpl implements CurrencyClient {
         if (response != null && response.getValues() != null && response.getValues().size() > 1) {
             return response.getValues().get(1).getClose();
         }
-        throw new CurrencyInformationUnavailable("Unable to retrieve previous close for: " + currencyPair);
+        throw new CurrencyInformationUnavailableException("Unable to retrieve previous close for: " + currencyPair);
     }
 }

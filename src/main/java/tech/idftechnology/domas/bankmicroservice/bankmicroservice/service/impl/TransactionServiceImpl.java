@@ -1,6 +1,7 @@
 package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.client.CurrencyClient;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.TransactionExceededLimitResponseDTO;
@@ -14,12 +15,16 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.Mon
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.TransactionRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.TransactionService;
 
+import static tech.idftechnology.domas.bankmicroservice.bankmicroservice.constant.CurrencyConstant.CONSTANT_CURRENCY_RUB;
+
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
@@ -54,7 +59,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional
     @Override
     public Long createTransaction(TransactionRequestDTO transactionRequestDTO) {
-        Transaction transaction = transactionMapper.mapToTransaction(transactionRequestDTO);
+        Transaction transaction = mapToTransaction(transactionRequestDTO);
         String category = transactionRequestDTO.getCategory();
         Optional<MonthlyLimit> optionalLimit = monthlyLimitRepository.findByLimitSumGreaterThanAndCategory(BigDecimal.valueOf(0), category);
         if(optionalLimit.isPresent()){
@@ -68,8 +73,18 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.save(transaction).getId();
     }
 
+    public Transaction mapToTransaction(TransactionRequestDTO transactionRequestDTO) {
+        return new Transaction(
+                transactionRequestDTO.getAccountFrom(),
+                transactionRequestDTO.getAccountTo(),
+                transactionRequestDTO.getCurrency(),
+                transactionRequestDTO.getAmount(),
+                transactionRequestDTO.getCategory(),
+                OffsetDateTime.now(ZoneOffset.ofHours(3)));
+    }
+
     private BigDecimal convertTransactionAmount(TransactionRequestDTO transactionRequestDTO) {
-        return transactionRequestDTO.getCurrency().equals("RUB")
+        return transactionRequestDTO.getCurrency().equals(CONSTANT_CURRENCY_RUB)
                 ? currencyClient.convertCurrencyRUBToUSD(transactionRequestDTO.getAmount())
                 : currencyClient.convertCurrencyKZTToUSD(transactionRequestDTO.getAmount());
     }
@@ -85,5 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
         monthlyLimitRepository.save(monthlyLimit);
     }
+
+
 
 }

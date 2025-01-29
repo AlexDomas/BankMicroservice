@@ -77,7 +77,7 @@ ____________________________________________________
 
 3. **Clone the repository:**
       ```bash
-      git clone URL-репозитория
+      git clone URL-Repository
       ```
    
 4. **Test microservice:**

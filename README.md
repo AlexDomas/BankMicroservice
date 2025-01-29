@@ -33,7 +33,7 @@ Endpoint which helps us to get information about monthly limits.
 Api for getting all limits (method GET) - 
 http://localhost:8080/api/v2/limits
 
-This API creates a new limit and returns its dto structure (method POST).
+This API creates a new limit and returns its dto structure (method POST) - 
 http://localhost:8080/api/v2/limits
 
 ### Application properties
@@ -90,4 +90,4 @@ ____________________________________________________
     - Open Docker Desktop
     - Go to the project directory and enter
     - ```bash
-      docker compose up
+      docker compose up --build

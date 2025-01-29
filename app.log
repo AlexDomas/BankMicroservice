@@ -4918,4 +4918,103 @@ Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to no
 ""2025-01-29 20:38:47 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 ""2025-01-29 20:38:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 ""2025-01-29 20:38:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+""2025-01-29 20:54:46 [restartedMain] INFO  t.i.d.b.b.BankMicroserviceApplication - Starting BankMicroserviceApplication using Java 18.0.1.1 on Hardy-PC with PID 4016 (D:\IntelliJ IDEA Projects\BankMicroservice\target\classes started by User in D:\IntelliJ IDEA Projects\BankMicroservice)
+""2025-01-29 20:54:46 [restartedMain] INFO  t.i.d.b.b.BankMicroserviceApplication - The following 1 profile is active: "host"
+""2025-01-29 20:54:46 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\User\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/User/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/User/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
+""2025-01-29 20:54:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+""2025-01-29 20:54:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+""2025-01-29 20:54:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2025-01-29 20:54:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 3 JPA repository interfaces.
+""2025-01-29 20:54:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+""2025-01-29 20:54:48 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+""2025-01-29 20:54:48 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+""2025-01-29 20:54:48 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+""2025-01-29 20:54:48 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1913 ms
+""2025-01-29 20:54:48 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+""2025-01-29 20:54:48 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.lockservice - Successfully acquired change log lock
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-1-create-transaction.yaml
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-2-create-monthly-limit.yaml
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-3-create-currency-rate.yaml
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-4-insert-default-monthly-limit.yaml
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-5-insert-first-transaction.yaml
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.lockservice - Successfully released change log lock
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.lockservice - Successfully acquired change log lock
+""2025-01-29 20:54:49 [restartedMain] WARN  liquibase.hub - Skipping auto-registration
+""2025-01-29 20:54:49 [restartedMain] INFO  liquibase.lockservice - Successfully released change log lock
+""2025-01-29 20:54:49 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2025-01-29 20:54:49 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final
+""2025-01-29 20:54:49 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2025-01-29 20:54:50 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+""2025-01-29 20:54:50 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2025-01-29 20:54:50 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2025-01-29 20:54:51 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+""2025-01-29 20:54:51 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+""2025-01-29 20:54:51 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+""2025-01-29 20:54:51 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+""2025-01-29 20:54:51 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+""2025-01-29 20:54:51 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+""2025-01-29 20:54:51 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+""2025-01-29 20:54:51 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+""2025-01-29 20:54:51 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+""2025-01-29 20:54:51 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+""2025-01-29 20:57:39 [restartedMain] INFO  t.i.d.b.b.BankMicroserviceApplication - Starting BankMicroserviceApplication using Java 18.0.1.1 on Hardy-PC with PID 16792 (D:\IntelliJ IDEA Projects\BankMicroservice\target\classes started by User in D:\IntelliJ IDEA Projects\BankMicroservice)
+""2025-01-29 20:57:39 [restartedMain] INFO  t.i.d.b.b.BankMicroserviceApplication - The following 1 profile is active: "host"
+""2025-01-29 20:57:39 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\User\.m2\repository\org\liquibase\liquibase-core\4.3.5\liquibase-core-4.3.5.jar referenced one or more files that do not exist: file:/C:/Users/User/.m2/repository/org/liquibase/liquibase-core/4.3.5/commons-cli-1.4.jar,file:/C:/Users/User/.m2/repository/org/liquibase/liquibase-core/4.3.5/snakeyaml-1.27.jar
+""2025-01-29 20:57:39 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+""2025-01-29 20:57:39 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+""2025-01-29 20:57:40 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2025-01-29 20:57:40 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+""2025-01-29 20:57:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+""2025-01-29 20:57:41 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+""2025-01-29 20:57:41 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+""2025-01-29 20:57:41 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+""2025-01-29 20:57:41 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1728 ms
+""2025-01-29 20:57:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+""2025-01-29 20:57:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+""2025-01-29 20:57:41 [restartedMain] INFO  liquibase.lockservice - Successfully acquired change log lock
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-1-create-transaction.yaml
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-2-create-monthly-limit.yaml
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-3-create-currency-rate.yaml
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-4-insert-default-monthly-limit.yaml
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading resource: db/changelog/changeset/changeset-5-insert-first-transaction.yaml
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.lockservice - Successfully released change log lock
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.lockservice - Successfully acquired change log lock
+""2025-01-29 20:57:42 [restartedMain] WARN  liquibase.hub - Skipping auto-registration
+""2025-01-29 20:57:42 [restartedMain] INFO  liquibase.lockservice - Successfully released change log lock
+""2025-01-29 20:57:42 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2025-01-29 20:57:42 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final
+""2025-01-29 20:57:42 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2025-01-29 20:57:42 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+""2025-01-29 20:57:43 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2025-01-29 20:57:43 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2025-01-29 20:57:44 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+""2025-01-29 20:57:44 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+""2025-01-29 20:57:44 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+""2025-01-29 20:57:44 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+""2025-01-29 20:57:44 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+""2025-01-29 20:57:44 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+""2025-01-29 20:57:44 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+""2025-01-29 20:57:44 [restartedMain] INFO  t.i.d.b.b.BankMicroserviceApplication - Started BankMicroserviceApplication in 5.973 seconds (JVM running for 6.898)
+""2025-01-29 20:57:48 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+""2025-01-29 20:58:47 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+""2025-01-29 20:58:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+""2025-01-29 20:58:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 "

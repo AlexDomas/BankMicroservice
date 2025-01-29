@@ -44,9 +44,6 @@ public class TransactionServiceImplTest {
     @Mock
     private CurrencyClientImpl currencyClient;
 
-    @Mock
-    private TransactionMapper transactionMapper;
-
     @InjectMocks
     private TransactionServiceImpl transactionService;
 

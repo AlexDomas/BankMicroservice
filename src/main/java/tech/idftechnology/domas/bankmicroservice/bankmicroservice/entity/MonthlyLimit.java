@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "monthly_limit")
@@ -30,5 +29,13 @@ public class MonthlyLimit extends BaseEntity {
 
     @Column(name = "category")
     private String category;
+
+    public MonthlyLimit(BigDecimal limitSum, BigDecimal startLimit, OffsetDateTime limitDateTime, String limitCurrencyShortname, String category) {
+        this.limitSum = limitSum;
+        this.startLimit = startLimit;
+        this.limitDateTime = limitDateTime;
+        this.limitCurrencyShortname = limitCurrencyShortname;
+        this.category = category;
+    }
 
 }

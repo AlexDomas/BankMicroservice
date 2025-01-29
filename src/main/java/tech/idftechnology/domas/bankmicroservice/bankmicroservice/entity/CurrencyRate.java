@@ -22,4 +22,5 @@ public class CurrencyRate extends BaseEntity {
 
     @Column(name = "close_rate")
     private BigDecimal close;
+
 }

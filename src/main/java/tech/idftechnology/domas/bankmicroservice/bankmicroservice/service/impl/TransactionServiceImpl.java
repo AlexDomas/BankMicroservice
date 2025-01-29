@@ -10,7 +10,6 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Monthly
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.Transaction;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.NoExceededLimitTransactionsException;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.exception.NoMonthlyLimitsFoundException;
-import tech.idftechnology.domas.bankmicroservice.bankmicroservice.mapper.TransactionMapper;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.MonthlyLimitRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.TransactionRepository;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.TransactionService;
@@ -34,8 +33,6 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepository transactionRepository;
 
     private final MonthlyLimitRepository monthlyLimitRepository;
-
-    private final TransactionMapper transactionMapper;
 
     @Override
     public List<Transaction> getAllTransactions() {
@@ -100,7 +97,5 @@ public class TransactionServiceImpl implements TransactionService {
         }
         monthlyLimitRepository.save(monthlyLimit);
     }
-
-
 
 }

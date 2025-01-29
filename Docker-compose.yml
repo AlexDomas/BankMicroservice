@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  bank_microservice_app:
+    build: .
+    image: "bank_microservice-app"
+    container_name: "bank_microservice-app"
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin
+      DB_URL: jdbc:postgresql://bank_microservice_app_db:5432/bank
+    volumes:
+      - ./logs/:/var/app.log
+
+  bank_microservice_app_db:
+    image: postgres:12
+    container_name: "bank_microservice_app_db"
+    restart: on-failure
+    user: root
+    ports:
+      - "5416:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bank
+      POSTGRES_HOST_AUTH_METHOD: trust
+    #volumes:
+    #  - ./data/logs/postgresql:/var/lib/postgresql/data

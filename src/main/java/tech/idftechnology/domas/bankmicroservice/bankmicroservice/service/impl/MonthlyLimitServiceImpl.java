@@ -2,6 +2,7 @@ package tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.dto.MonthlyLimitRequestDTO;
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.entity.MonthlyLimit;
@@ -11,6 +12,9 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.repository.Mon
 import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.MonthlyLimitService;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Slf4j
@@ -39,6 +43,16 @@ public class MonthlyLimitServiceImpl implements MonthlyLimitService {
 
         MonthlyLimit monthlyLimit = monthlyLimitMapper.mapToMonthlyLimit(monthlyLimitRequestDTO);
         limitRepository.save(monthlyLimit);
+    }
+
+    @Scheduled(cron = "0 0 0 1 * *")
+    @Transactional
+    public void resetMonthlyLimitByCategory() {
+        limitRepository.deleteAll();
+        MonthlyLimit monthlyCategoryGoodsLimit = new MonthlyLimit(new BigDecimal("1000"), new BigDecimal("1000"), OffsetDateTime.now(ZoneOffset.ofHours(3)), "USD", "goods");
+        MonthlyLimit monthlyCategoryServicesLimit = new MonthlyLimit(new BigDecimal("1000"), new BigDecimal("1000"), OffsetDateTime.now(ZoneOffset.ofHours(3)), "USD", "services");
+        limitRepository.save(monthlyCategoryGoodsLimit);
+        limitRepository.save(monthlyCategoryServicesLimit);
     }
 
 }

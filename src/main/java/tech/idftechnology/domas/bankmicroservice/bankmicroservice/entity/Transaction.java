@@ -10,8 +10,8 @@ import java.time.OffsetDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
 @Table(name = "transaction")
 public class Transaction extends BaseEntity{

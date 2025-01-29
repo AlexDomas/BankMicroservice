@@ -14,7 +14,7 @@ databaseChangeLog:
                   valueNumeric: 1000.0
               - column:
                   name: limit_datetime
-                  valueDate: "DATE_TRUNC('month', NOW())"
+                  valueDate: "NOW()"
               - column:
                   name: limit_currency_shortname
                   value: USD
@@ -32,7 +32,7 @@ databaseChangeLog:
                   valueNumeric: 1000.0
               - column:
                   name: limit_datetime
-                  valueDate: "DATE_TRUNC('month', NOW())"
+                  valueDate: "NOW()"
               - column:
                   name: limit_currency_shortname
                   value: USD

@@ -15,7 +15,7 @@ import tech.idftechnology.domas.bankmicroservice.bankmicroservice.service.Monthl
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Endpoint which helps us to get information about monthly limits ")
+@Api(description = "Endpoint which helps us to get information about monthly limits")
 @RestController
 @RequestMapping(value = "/api/v2/limits")
 public class MonthlyLimitRestController {

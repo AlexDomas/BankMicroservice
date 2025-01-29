@@ -23,7 +23,7 @@ databaseChangeLog:
                   value: goods
               - column:
                   name: transaction_date
-                  valueDate: "DATE_TRUNC('month', NOW())"
+                  valueDate: "NOW()"
               - column:
                   name: limit_exceeded
                   value: true
